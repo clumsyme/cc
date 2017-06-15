@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import './styles.css'
 
-class Contacts extends Component {
+export class Contacts extends Component {
     constructor(props) {
         super(props)
     }
@@ -21,5 +21,3 @@ class Contacts extends Component {
         )
     }
 }
-
-export default Contacts
