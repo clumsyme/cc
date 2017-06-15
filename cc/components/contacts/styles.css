@@ -1,0 +1,27 @@
+.cc_contact_item {
+    font-size: 13px;
+    display: flex;
+    padding: 10px 18px;
+    align-items: center;
+    background-color: #2e3238;
+    border-bottom: 1px solid #292c33;
+    cursor: pointer;
+}
+
+.cc_contact_avatar_block {
+    margin-right: 10px;
+}
+
+.cc_contact_avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.cc_contact_name {
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
