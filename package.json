@@ -1,0 +1,23 @@
+{
+  "name": "cc",
+  "version": "1.0.0",
+  "description": "chat components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clumsyme/cc.git"
+  },
+  "author": "Li Yan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clumsyme/cc/issues"
+  },
+  "homepage": "https://github.com/clumsyme/cc#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
