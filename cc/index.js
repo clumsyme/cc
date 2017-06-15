@@ -1,3 +1,3 @@
 // @ts-check
 
-export { Contacts } from './contacts'
+export {default as Contacts } from './contacts'

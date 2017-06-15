@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import './styles.css'
 
-export class Contacts extends Component {
+export default class Contacts extends Component {
     constructor(props) {
         super(props)
     }
