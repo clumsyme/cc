@@ -4,6 +4,8 @@
     display: inline-block;
     margin-right: 10px;
     position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .cc_avatar {
