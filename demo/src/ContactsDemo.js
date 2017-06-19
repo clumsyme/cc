@@ -9,6 +9,7 @@ class ContactsDemo extends Component {
                 {
                     avatar: 'https://img3.doubanio.com/icon/u40946569-12.jpg',
                     name: 'Sophie',
+                    unread: 3,
                     id: 1,
                 },
                 {
@@ -24,6 +25,7 @@ class ContactsDemo extends Component {
                 {
                     avatar: 'https://img3.doubanio.com/icon/u3228511-30.jpg',
                     name: 'Ronan',
+                    unread: '100+',
                     id: 4,
                 },
                 {
@@ -43,6 +45,7 @@ class ContactsDemo extends Component {
                         avatar={contacts.avatar}
                         name={contacts.name}
                         key={contacts.id}
+                        unread={contacts.unread}
                     />
                 ))}
             </div>

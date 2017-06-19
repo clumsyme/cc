@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ContactsDemo from './ContactsDemo'
 import AvatarDemo from './AvatarDemo'
+import MessageTableDemo from './MessageTableDemo'
 
 class App extends Component {
   // constructor(props) {
@@ -20,6 +21,7 @@ class App extends Component {
         <div className="App-intro">
           <ContactsDemo />
           <AvatarDemo />
+          <MessageTableDemo />
         </div>
       </div>
     );

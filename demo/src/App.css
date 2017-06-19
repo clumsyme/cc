@@ -29,6 +29,10 @@
   border-bottom: 1px inset #999;
 }
 
+.chatting {
+  display: flex;
+}
+
 @keyframes logo-trans {
   0% {
     clip-path: polygon(0% 0%, 33% 0, 66% 0, 100% 0%, 100% 33%, 100% 66%, 100% 100%, 66% 100%, 33% 100%, 0% 100%, 0% 66%, 0 33%);
