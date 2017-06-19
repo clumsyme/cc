@@ -1,0 +1,91 @@
+.cc_message_table_wrapper {
+    width: 500px;
+    height: 450px;
+    text-align: center;
+    margin: 0 1em;
+    border: 1px solid #999;
+    border-radius: 10px;
+}
+
+.cc_message_table {
+    background-color: #fafafa;
+    overflow-y: auto;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.cc_message_table::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+.cc_message_table::-webkit-scrollbar-track {
+    background-color: #fcfcfc;
+    width: 20px;
+}
+.cc_message_table::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: #000
+}
+
+.cc_message_table_header {
+    position: relative;
+    background-color: darkgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10%;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+.cc_bubble_send,
+.cc_bubble_receive {
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    max-width: 80%;
+}
+
+.cc_message_avatar {
+    flex-shrink: 0;
+}
+
+.cc_bubble_receive {
+    align-self: flex-start
+}
+
+.cc_bubble_send_deco,
+.cc_bubble_receive_deco {
+    flex-shrink: 0;
+    height: 0;
+    position: relative;
+    top: 15px;
+    border: 8px solid transparent;
+}
+
+.cc_bubble_send_deco {
+    border-left-color: #b2e281;
+}
+
+.cc_bubble_receive_deco {
+    border-right-color: #ececec;
+}
+
+.cc_bubble_send_content,
+.cc_bubble_receive_content {
+    border-radius: 10px;
+    background-color: #b2e281;
+    padding: 1em;
+    display: inline-block;
+    word-break: break-all;
+}
+
+.cc_bubble_receive_content {
+    background-color: #ececec
+}
