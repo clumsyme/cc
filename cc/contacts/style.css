@@ -6,6 +6,11 @@
     background-color: #2e3238;
     border-bottom: 1px solid #292c33;
     cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.cc_contact_item:hover {
+    background-color: #3f4349;
 }
 
 .cc_contact_name {

@@ -7,16 +7,19 @@ export default class Avatar extends Component {
         super(props)
     }
     render() {
-        const { avatar, name, style, size, shape } = this.props
-        const className = 'cc_avatar' + shape === 'circle' ? ' circle' : ''
+        const { src, name, style, size, shape, unread } = this.props
+        const className = 'cc_avatar' + (shape === 'circle' ? ' circle' : '')
         return (
-            <span className="cc_avatar_block">
+            <span
+                className="cc_avatar_block"
+                style={{ ...style, width: size + 'px', height: size + 'px' }}
+            >
                 <img
                     className={className}
-                    src={avatar}
+                    src={src}
                     alt={name}
-                    style={{ ...style, width: size + 'px', height: size + 'px' }}
                 />
+                {unread && <sup className="cc_avatar_unread">{(!size || size > 40) && unread}</sup>}
             </span>
         )
     }
