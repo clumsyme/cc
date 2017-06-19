@@ -1,6 +1,6 @@
 .cc_avatar_block {
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     display: inline-block;
     margin-right: 10px;
     position: relative;
@@ -17,15 +17,28 @@
 }
 
 .cc_avatar_unread {
-    width: 40%;
-    height: 40%;
-    border-radius: 50%;
+    font-size: 10px;
+    padding: 4px;
+    min-width: 10px;
+    height: 10px;
+    line-height: 1;
+    border-radius: 9px;
     background-color: #f04134;
     color: #fff;
     position: absolute;
-    top: -20%;
-    right: -20%;
+    top: -9px;
+    right: -9px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cc_avatar_unread_dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: #f04134;
+    position: absolute;
+    top: -5px;
+    right: -5px;
 }
