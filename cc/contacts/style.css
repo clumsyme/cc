@@ -8,16 +8,6 @@
     cursor: pointer;
 }
 
-.cc_contact_avatar_block {
-    margin-right: 10px;
-}
-
-.cc_contact_avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 3px;
-}
-
 .cc_contact_name {
     color: #fff;
     overflow: hidden;

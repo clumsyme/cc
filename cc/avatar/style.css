@@ -1,0 +1,13 @@
+.cc_avatar_block {
+    margin-right: 10px;
+}
+
+.cc_avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.cc_avatar.circle {
+    border: 50%;
+}
