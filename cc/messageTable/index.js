@@ -31,14 +31,14 @@ export default class MessageTable extends Component {
         super(props)
     }
     render() {
-        const { messageList, chatting, me } = this.props
+        const { chatting, me } = this.props
         return (
             <div className="cc_message_table_wrapper">
                 <div className="cc_message_table_header">
                     {chatting ? chatting.name : ''}
                 </div>
                 <div className="cc_message_table">
-                    {messageList.map((message, index) => {
+                    {chatting && chatting.messages.map((message, index) => {
                         if (message.sending) {
                             return <SendBubble avatar={me} content={message.content} key={index} />
                         }
