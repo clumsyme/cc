@@ -13,7 +13,7 @@ class ContactsDemo extends Component {
                     id: 1,
                 },
                 {
-                    avatar: 'https://img1.doubanio.com/icon/u52641881-7.jpg',
+                    avatar: 'https://img3.doubanio.com/icon/u2735541-26.jpg',
                     name: 'Taylor',
                     id: 2,
                 },

@@ -31,6 +31,18 @@
 
 .chatting {
   display: flex;
+  background-color: #eee;
+  align-items: stretch;
+}
+
+.clist {
+  background-color: #3a3d44;
+  flex: 1;
+}
+
+.mlist {
+  background-color: #eee;
+  flex: 3;
 }
 
 @keyframes logo-trans {
