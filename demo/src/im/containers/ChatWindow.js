@@ -4,9 +4,9 @@ import { SendBubble, ReceiveBubble } from '../components'
 import { Button, Icon } from 'antd'
 
 //! 测试数据
-import { contracts } from '../TEST_DATA'
+import { contacts } from '../TEST_DATA'
 const me = 'https://img1.doubanio.com/icon/u8782032-68.jpg'
-const chatting = contracts[0]
+const chatting = contacts[0]
 
 export default class MessageTable extends Component {
     constructor(props) {

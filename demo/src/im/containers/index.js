@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Tabs, Icon } from 'antd'
 import { Search } from '../components'
-import ContractsList from './ContractsList'
+import ContactList from './ContactList'
 import ConversationList from './ConversationList'
 import ConversationWindow from './ConversationWindow'
 import ChatWindow from './ChatWindow'
@@ -33,7 +33,7 @@ export default class IM extends Component {
         }
     }
 
-    onChatWith = (contracts) => {
+    onChatWith = (contact) => {
         this.setState({
             ischatting: true,
         })
@@ -82,10 +82,10 @@ export default class IM extends Component {
                         }}
                     >
                         <TabPane tab={<span><Icon type="user" />好友</span>} key="friends">
-                            <ContractsList onChatWith={this.onChatWith} />
+                            <ContactList onChatWith={this.onChatWith} />
                         </TabPane>
                         <TabPane tab={<span><Icon type="team" />群组</span>} key="group">
-                            <ContractsList />
+                            <ContactList />
                         </TabPane>
                         <TabPane tab={<span><Icon type="message" />会话</span>} key="conversition">
                             <ConversationList />

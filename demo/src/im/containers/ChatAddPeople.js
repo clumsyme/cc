@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Modal, Input, Button, Icon } from 'antd'
-import { Contracts, Search } from '../components'
+import { Contact, Search } from '../components'
 
 //! 测试数据
-import { contracts } from '../TEST_DATA'
+import { contacts } from '../TEST_DATA'
 
 export default class ChatAddPeople extends Component {
     constructor(props) {
@@ -31,8 +31,11 @@ export default class ChatAddPeople extends Component {
     }
 
     unSelect = (index) => {
+        console.log(index)
         let selected = this.state.selected
+        console.log(selected)
         selected.splice(index, 1)
+        console.log(selected)
         this.setState({
             selected: [...selected]
         })
@@ -40,7 +43,7 @@ export default class ChatAddPeople extends Component {
 
     render() {
         const selectedPeople = this.state.selected.map((index) => (
-            contracts[index]
+            contacts[index]
         ))
         return (
             <Modal
@@ -55,33 +58,40 @@ export default class ChatAddPeople extends Component {
                     <div className="im-chat-addpeople-search">
                         <Input.Search className="im-chat-addpeople-input" onChange={() => { }} />
                     </div>
-                    <div className="im-chat-addpeople-contractsList">
-                        {contracts.map((c, index) => (
-                            <div className="im-chat-addpeople-contracts" onClick={() => { this.select(index) }} key={c.name}>
-                                <Contracts
+                    <div className="im-chat-addpeople-contactsList">
+                        {contacts.map((c, index) => (
+                            <div className="im-chat-addpeople-contacts" onClick={() => { this.select(index) }} key={c.name}>
+                                <Contact
                                     avatar={c.avatar}
                                     name={c.name}
                                 />
                                 {
                                     this.state.selected.indexOf(index) !== -1
                                         ?
-                                        <Icon type="check" />
+                                        <Button icon="check" type="primary" shape="circle" size="small" />
                                         :
-                                        null
+                                        <Button shape="circle" size="small"></Button>
                                 }
                             </div>
                         ))}
                     </div>
                 </div>
                 <div className="im-chat-addpeople-right">
-                    <p>已选择:</p>
+                    <h3 className="im-chat-addpeople-righthead">已选择:</h3>
                     <div className="im-chat-addpeople-selectedList">
                         {selectedPeople.map((c, index) => (
-                            <div className="im-chat-addpeople" key={c.name} onClick={() => { this.unSelect(index) }}>
-                                <Contracts
+                            <div className="im-chat-addpeople-selected" key={c.name}>
+                                <Contact
                                     avatar={c.avatar}
                                     name={c.name}
-
+                                />
+                                <Button
+                                    type="danger"
+                                    shape="circle"
+                                    icon="close"
+                                    size="small"
+                                    onClick={() => { this.unSelect(index) }}
+                                    ghost
                                 />
                             </div>
                         ))}

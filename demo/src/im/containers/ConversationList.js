@@ -3,7 +3,7 @@ import { Input } from 'antd'
 import { Conversation } from '../components'
 
 //! 测试数据
-import { contracts } from '../TEST_DATA'
+import { contacts } from '../TEST_DATA'
 
 export default class ConversitionList extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ export default class ConversitionList extends Component {
     render() {
         return (
             <div id="conversation-list">
-                    {contracts.map((c) => (
+                    {contacts.map((c) => (
                         <Conversation avatar={c.avatar} name={c.name} message={c.message} key={c.name} />
                     ))}
             </div>

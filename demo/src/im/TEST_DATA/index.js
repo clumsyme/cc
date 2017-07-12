@@ -1,4 +1,4 @@
-export const contracts = [{
+export const contacts = [{
     "name": "小丫丫",
     "avatar": "https://img3.doubanio.com/icon/u156736223-1.jpg",
     "message": "在构建，稍等",

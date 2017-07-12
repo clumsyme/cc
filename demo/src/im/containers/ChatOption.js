@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
-import { Contracts } from '../components'
+import { Contact } from '../components'
 import ChatAddPeople from './ChatAddPeople'
 
 //! 测试数据
-import { contracts } from '../TEST_DATA'
+import { contacts } from '../TEST_DATA'
 
 export default class ChatOption extends Component {
     constructor(props) {
@@ -36,8 +36,8 @@ export default class ChatOption extends Component {
                 {
                     //! 联系人不要 slice
                 }
-                {contracts.slice(0, 3).map((c) => (
-                    <Contracts name={c.name} avatar={c.avatar} key={c.name} />
+                {contacts.slice(0, 3).map((c) => (
+                    <Contact name={c.name} avatar={c.avatar} key={c.name} />
                 ))}
                 <ChatAddPeople visible={this.state.addPeopleVisible} onCloseAddPeople={this.onCloseAddPeople} />
             </div>
