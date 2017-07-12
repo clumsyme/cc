@@ -1,0 +1,11 @@
+.im-search-block {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.im-search-input {
+    height: 30px;
+    border-radius: 30px;
+    padding-left: 12px;
+}

@@ -1,0 +1,53 @@
+.im-bubble-send,
+.im-bubble-receive {
+    flex-shrink: 0;
+    align-self: flex-end;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    max-width: 80%;
+}
+
+.im-message-avatar {
+    flex-shrink: 0;
+}
+
+.im-bubble-receive {
+    align-self: flex-start
+}
+
+.im-bubble-send-deco,
+.im-bubble-receive-deco {
+    flex-shrink: 0;
+    height: 0;
+    position: relative;
+    top: 12px;
+    border: 8px solid transparent;
+}
+
+.im-bubble-send-deco {
+    border-left-color: #b2e281;
+}
+
+.im-bubble-receive-deco {
+    border-right-color: #fff;
+    ;
+}
+
+.im-bubble-send-content,
+.im-bubble-receive-content {
+    border-radius: 10px;
+    background-color: #b2e281;
+    padding: 10px 16px;
+    word-break: break-all;
+    font-family: sans-serif;
+}
+
+.im-bubble-receive-content {
+    background-color: #fff;
+}
+
+.emoji {
+    vertical-align: middle;
+}

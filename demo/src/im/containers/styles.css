@@ -1,0 +1,347 @@
+/*IM*/
+
+#im {
+    position: fixed;
+    right: 100px;
+    top: 20px;
+}
+
+
+/*主面板*/
+
+#im-pane {
+    width: 300px;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    padding-top: 2em;
+    background-color: #f5f5f5;
+    border-radius: 10px 10px 0 0;
+    transform: scaleY(0);
+    transform-origin: 95% 0%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1998;
+}
+
+.im-tab>div[role='tablist'] .ant-tabs-tab {
+    margin-right: 0;
+    width: 100px;
+    text-align: center;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.pane-fadein {
+    animation: fadein .2s forwards ease-in-out;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+}
+
+.pane-fadeout {
+    animation: fadeout .2s both ease-in-out;
+}
+
+
+/*联系人列表*/
+
+#contracts-list,
+#conversation-list {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+@media (min-height: 880px) {
+    #contracts-list,
+    #conversation-list {
+        height: 650px
+    }
+}
+
+#im ::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+#im ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+#im ::-webkit-scrollbar-thumb {
+    width: 5px;
+    height: 20px;
+    border-radius: 100px;
+    background-color: #aaa;
+}
+
+
+/*聊天窗口*/
+
+.im-chat-window-wrapper {
+    position: absolute;
+    top: 100px;
+    right: 350px;
+    width: 500px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background-color: #f5f5f5;
+    transform-origin: 100% 50%;
+    overflow: hidden;
+}
+
+@keyframes slideout {
+    0% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+}
+
+.im-chat-window-wrapper.slideout {
+    animation: slideout .2s forwards ease-out;
+}
+
+@keyframes slidein {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+.im-chat-window-wrapper.slidein {
+    animation: slidein .2s forwards ease-in;
+}
+
+
+/*.im-chat-window-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 50px;
+    border-bottom: 1px solid #d6d6d6;
+    box-sizing: border-box;
+}*/
+
+.im-chat-window-header {
+    padding-left: 1.5em;
+    height: 55px;
+    border-bottom: 1px solid #d6d6d6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.im-chat-window-closer,
+.im-chat-window-option {
+    display: inline-block;
+    width: 55px;
+    height: 55px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.im-chat-window-option {
+    right: 55px;
+}
+
+.im-chat-window-closer>.anticon,
+.im-chat-window-option>.anticon {
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.im-chat-window-closer:hover>.anticon,
+.im-chat-window-option:hover>.anticon {
+    transform: scale(1.5);
+    color: #000;
+    /* color: blue; */
+}
+
+.im-chat-window {
+    overflow-y: auto;
+    flex: 0 0 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.im-chat-window-bar {
+    flex: 0 0 35px;
+    border-top: 1px solid #d6d6d6;
+    display: flex;
+}
+
+.im-chat-window-baritem {
+    width: 40px;
+    height: 36px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.im-chat-window-baritem:hover {
+    color: #000;
+    /* background-color: #e5e5e5; */
+}
+
+.im-chat-window-input {
+    flex: 0 0 100px;
+    padding: 3px 8px;
+    outline: none;
+    font-size: 1.3em;
+    overflow: auto;
+}
+
+.im-chat-window-send {
+    text-align: right;
+    padding: 0 12px 12px;
+}
+
+.im-chat-option {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 200px;
+    height: 525px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    overflow: auto;
+    transition: transform .2s;
+    transform: translateX(100%);
+}
+
+.im-chat-option.slidein {
+    transform: translateX(0);
+}
+
+.im-chat-option-add {
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.im-chat-option-addbutton {
+    cursor: pointer;
+    font-size: 40px;
+    margin-right: 12px;
+}
+
+.im-chat-option-addbutton:hover {
+    color: #000;
+}
+
+.im-chat-addpeople-left,
+.im-chat-addpeople-right {
+    width: 50%;
+    height: 500px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.im-chat-addpeople-left {
+    border-right: 1px solid #e5e5e5;
+}
+
+.im-chat-addpeople .ant-modal-body {
+    display: flex;
+    padding: 0;
+}
+
+.im-chat-addpeople-search {
+    margin: 0 auto 10px;
+    display: block;
+    background-color: #fff;
+}
+
+.im-chat-addpeople-input {
+    height: 30px;
+    border-radius: 30px;
+    padding-left: 12px;
+}
+
+.im-chat-addpeople-contractsList,
+.im-chat-addpeople-selectedList {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.im-chat-addpeople-contracts,
+.im-chat-addpeople-selected {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .3s;
+}
+
+.im-chat-addpeople-contracts:hover,
+.im-chat-addpeople-selected:hover {
+    background-color: #e9e9e9;
+}
+
+.im-chat-addpeople-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#im ::-webkit-scrollbar,
+.im-chat-addpeople ::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+
+#im ::-webkit-scrollbar-track,
+.im-chat-addpeople ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+#im ::-webkit-scrollbar-thumb,
+.im-chat-addpeople ::-webkit-scrollbar-thumb {
+    width: 5px;
+    height: 20px;
+    border-radius: 100px;
+    background-color: #aaa;
+}
