@@ -1,19 +1,40 @@
 import React, { Component } from 'react'
-import ChatOption from './ChatOption'
-import { SendBubble, ReceiveBubble } from '../components'
 import { Button, Icon } from 'antd'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { SendBubble, ReceiveBubble } from '../components'
+import ChatOption from './ChatOption'
+import Emoji from './Emoji'
+import emojis from './emojis'
+import { makeDragable, scrollBottom, parseContent } from './funcs'
+import { sendMessage } from '../modules'
 
 //! 测试数据
 import { contacts } from '../TEST_DATA'
 const me = 'https://img1.doubanio.com/icon/u8782032-68.jpg'
-const chatting = contacts[0]
 
-export default class MessageTable extends Component {
+class ChatWindow extends Component {
     constructor(props) {
         super(props)
-        this.state= {
+        this.state = {
             optionVisible: false,
+            inputValue: '',
+            emojiVisible: false,
         }
+    }
+
+    componentDidMount() {
+        makeDragable('.im-chat-window-wrapper')
+        scrollBottom(this.chatWindow, 0)
+    }
+
+    changeFont = () => {
+        this.setState({
+            inputStyle: {
+                fontSize: '20px',
+                fontWeight: '800',
+            }
+        })
     }
 
     toggleOptionVisible = () => {
@@ -21,37 +42,121 @@ export default class MessageTable extends Component {
             optionVisible: !prevState.optionVisible,
         }))
     }
+    unChatting = () => {
+        this.setState({
+            optionVisible: false,
+        }, () => {
+            this.props.onCloseChatWindow()
+        })
+    }
+
+    onInput = (e) => {
+        //! 应该放到接收时处理
+        // const parse = (text) => {
+        //     let rg = /<(?!img)(.*?)>/g
+        //     let replace = (match, tag) => {
+        //         return '&lt' + tag + '&gt'
+        //     }
+        //     return text.replace(rg, replace)
+        // }
+
+        this.setState({
+            inputValue: e.target.value,
+        })
+    }
+
+    onCloseEmoji = () => {
+        this.setState({
+            emojiVisible: false,
+        })
+    }
+
+    toggleEmojiVisible = () => {
+        this.setState((prevState) => ({
+            emojiVisible: !prevState.emojiVisible,
+        }))
+    }
+
+    insertEmoji = (emoji) => {
+        let { inputValue } = this.state
+        let caret = this.input.selectionStart
+        inputValue = inputValue.slice(0, caret) + emoji + inputValue.slice(caret)
+        caret += emoji.length
+        this.setState({
+            inputValue,
+        }, () => {
+            this.input.focus()
+            this.input.setSelectionRange(caret, caret)
+        })
+    }
+
+    sendMessage = () => {
+        this.props.sendMessage(this.state.inputValue, this.props.chatting.name)
+        this.setState({
+            emojiVisible: false,
+            inputValue: '',
+        }, () => {
+            scrollBottom(this.chatWindow)
+        })
+    }
+
     render() {
+        const { chatting } = this.props
+
         return (
             <div className={"im-chat-window-wrapper" + " " + this.props.className}>
-                <div className="im-chat-window-header">
+                <div className="im-chat-window-header forDrag">
                     <h2>{chatting ? chatting.name : ''}</h2>
-                     <div className="im-chat-window-ctrl">
+                    <div className="im-chat-window-ctrl">
                         <span className="im-chat-window-option" onClick={this.toggleOptionVisible}><Icon type="ellipsis" /></span>
-                        <span className="im-chat-window-closer" onClick={this.props.onCloseChatWindow}><Icon type="close" /></span>
-                     </div> 
+                        <span className="im-chat-window-closer" onClick={this.unChatting}><Icon type="close" /></span>
+                    </div>
                 </div>
-                <div className="im-chat-window">
+                <div className="im-chat-window" onClick={this.onCloseEmoji} ref={(window) => {this.chatWindow = window}}>
                     {chatting && chatting.messages.map((message, index) => {
                         if (message.sending) {
-                            return <SendBubble avatar={me} content={message.content} key={index} />
+                            return <SendBubble avatar={me} content={parseContent(message.content)} key={index} />
                         }
-                        return <ReceiveBubble avatar={chatting.avatar} content={message.content} key={index} />
+                        return <ReceiveBubble avatar={chatting.avatar} content={parseContent(message.content)} key={index} />
                     })}
                 </div>
                 <div className="im-chat-window-bar">
-                    <div className="im-chat-window-baritem">A</div>
-                    <div className="im-chat-window-baritem"><Icon type="smile-o" /></div>
+                    <div className="im-chat-window-baritem" onClick={this.changeFont}>A</div>
+                    <Emoji
+                        toggleEmojiVisible={this.toggleEmojiVisible}
+                        visible={this.state.emojiVisible}
+                        insertEmoji={this.insertEmoji}
+                    />
                     <div className="im-chat-window-baritem"><Icon type="folder" /></div>
                     <div className="im-chat-window-baritem"><Icon type="apple-o" /></div>
                     <div className="im-chat-window-baritem"><Icon type="android-o" /></div>
                 </div>
-                <div className="im-chat-window-input" contentEditable></div>
+                <textarea
+                    className="im-chat-window-input"
+                    type="textarea"
+                    rows={6}
+                    onChange={this.onInput}
+                    onClick={this.onCloseEmoji}
+                    value={this.state.inputValue}
+                    style={this.state.inputStyle}
+                    ref={(input) => { this.input = input }}
+                />
                 <div className="im-chat-window-send">
-                    <Button type="primary">发送</Button>
+                    <Button onClick={this.sendMessage} type="primary">发送</Button>
                 </div>
-                <ChatOption visible={this.state.optionVisible} />
+                <ChatOption chatting={this.props.chatting} visible={this.state.optionVisible} />
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    conversation: state.im.conversation,
+    chatting: state.im.chatting,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    ...bindActionCreators({ sendMessage }, dispatch)
+})
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(ChatWindow)

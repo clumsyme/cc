@@ -5,6 +5,7 @@ import ContactList from './ContactList'
 import ConversationList from './ConversationList'
 import ConversationWindow from './ConversationWindow'
 import ChatWindow from './ChatWindow'
+import { makeDragable } from './funcs'
 import './styles.css'
 
 const TabPane = Tabs.TabPane
@@ -15,15 +16,20 @@ export default class IM extends Component {
         this.state = {
             paneVisible: false,
             paneClass: '',
+            chatClass: '',
             ischatting: false,
         }
+    }
+    componentDidMount() {
+        //! if drag 
+        makeDragable('#im-pane')
     }
 
     toggleVisible = () => {
         if (this.state.paneVisible) {
             this.setState({
                 paneVisible: false,
-                paneClass: 'pane-fadeout'
+                paneClass: 'pane-fadeout',
             })
         } else {
             this.setState({
@@ -33,48 +39,32 @@ export default class IM extends Component {
         }
     }
 
-    onChatWith = (contact) => {
+    openChatWindow = (contact) => {
         this.setState({
-            ischatting: true,
+            ischatting: 'people',
+            chatClass: 'slidein',
         })
-
-        //! if drag 
-        //! 若要drag，将chat-window与pane平级，并fixed定位
-        // const cw = document.getElementsByClassName('im-chat-window-wrapper')[0]
-        // cw.onmousedown = (e) => {
-        //     cw.dragging = true
-        //     cw.dragX = e.clientX
-        //     cw.dragY = e.clientY
-        // }
-        // window.onmousemove = (e) => {
-        //     if (cw.dragging) {
-        //         let left = window.getComputedStyle(cw).left.split('p')[0]
-        //         let top = window.getComputedStyle(cw).top.split('p')[0]
-        //         console.log(left + '-' + top)
-        //         console.log(e.clientX + '+++' + e.clientY)
-        //         // cw.style.left = (left + e.clientX - cw.dragX) + 'px'
-        //         // cw.style.top = (top + e.clientY - cw.dragY) + 'px'
-        //     }
-        // }
-        // window.onmouseup = () => {
-        //     cw.dragging = false
-        // }
     }
 
     onCloseChatWindow = () => {
         this.setState({
             ischatting: false,
+            chatClass: 'slideout',
         })
-        console.warn('closed')
     }
 
     render() {
         return (
             <div id="im">
                 <Button shape="circle" type="primary" onClick={this.toggleVisible} icon="aliwangwang" size="large" />
+                <ChatWindow
+                    className={this.state.chatClass}
+                    onCloseChatWindow={this.onCloseChatWindow}
+                />
                 <div id="im-pane" className={this.state.paneClass}>
-                    <ChatWindow className={this.state.ischatting ? 'slidein' : 'slideout'} onCloseChatWindow={this.onCloseChatWindow} />
-                    <Search />
+                    <div className="im-pane-head forDrag">
+                        <Search />
+                    </div>
                     <Tabs
                         className="im-tab"
                         tabBarStyle={{
@@ -82,7 +72,7 @@ export default class IM extends Component {
                         }}
                     >
                         <TabPane tab={<span><Icon type="user" />好友</span>} key="friends">
-                            <ContactList onChatWith={this.onChatWith} />
+                            <ContactList openChatWindow={this.openChatWindow} />
                         </TabPane>
                         <TabPane tab={<span><Icon type="team" />群组</span>} key="group">
                             <ContactList />

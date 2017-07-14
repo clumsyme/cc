@@ -41,26 +41,36 @@ export default class ChatAddPeople extends Component {
         })
     }
 
+    closeModal = () => {
+        this.setState({
+            selected: [],
+        }, () => {
+            this.props.onCloseAddPeople()
+        })
+    }
+
     render() {
         const selectedPeople = this.state.selected.map((index) => (
             contacts[index]
         ))
+        const { chatting } = this.props
         return (
             <Modal
+                key={chatting && chatting.name}
                 title={null}
                 footer={null}
                 closable={false}
                 visible={this.props.visible}
                 wrapClassName="im-chat-addpeople"
-                width={500}
+                width={600}
             >
                 <div className="im-chat-addpeople-left">
                     <div className="im-chat-addpeople-search">
                         <Input.Search className="im-chat-addpeople-input" onChange={() => { }} />
                     </div>
-                    <div className="im-chat-addpeople-contactsList">
+                    <div className="im-chat-addpeople-contactList">
                         {contacts.map((c, index) => (
-                            <div className="im-chat-addpeople-contacts" onClick={() => { this.select(index) }} key={c.name}>
+                            <div className="im-chat-addpeople-contact" onClick={() => { this.select(index) }} key={c.name}>
                                 <Contact
                                     avatar={c.avatar}
                                     name={c.name}
@@ -97,8 +107,8 @@ export default class ChatAddPeople extends Component {
                         ))}
                     </div>
                     <div className="im-chat-addpeople-buttons">
-                        <Button className="im-chat-addpeople-nobutton" onClick={this.props.onCloseAddPeople}>NO</Button>
-                        <Button className="im-chat-addpeople-okbutton" onClick={this.props.onCloseAddPeople}>OK</Button>
+                        <Button className="im-chat-addpeople-nobutton" onClick={this.closeModal}>NO</Button>
+                        <Button className="im-chat-addpeople-okbutton" type="primary" onClick={this.closeModal}>OK</Button>
                     </div>
                 </div>
             </Modal>
