@@ -5,58 +5,60 @@ export const contacts = [{
     "messages": [
         {
             sending: true,
-            content: '你爱听什么歌啊？'
+            content: 'Hello'
         },
         {
             sending: true,
-            content: '我喜欢听Taylor Swift'
+            content: '没查到数据'
         },
         {
             sending: false,
-            content: '哇~'
+            content: '登陆里的cpyOrgName必须在auth/org/queryOrgList这个接口里查到才会放到那'
         },
         {
             sending: false,
-            content: '我也好喜欢泰勒的'
+            content: '这个是全包？'
         },
         {
             sending: false,
-            content: '凯特派瑞也不错'
+            content: '恩'
         },
         {
             sending: true,
-            content: '哈哈，水果姐'
+            content: '炳炜改的东西你有吗'
         },
         {
             sending: true,
-            content: '我喜欢她的“I kissed a girl”'
+            content: '来吃冒菜啊'
         },
         {
             sending: true,
-            content: '她还在超级碗决赛上演唱了Roar'
+            content: '有'
         },
         {
             sending: false,
-            content: '不过还是泰勒声音更喜欢点'
+            content: '苹果的'
         },
         {
             sending: true,
-            content: '没错'
+            content: '我七点就出来了'
         },
         {
             sending: true,
-            content: '哈哈'
+            content: '现在还堵在四环入口[笑歪]'
         },
         {
             sending: false,
-            content: '嘿嘿嘿'
+            content: '艹[嚎哭]'
         },
     ]
 }, {
     "name": "黑田",
     "avatar": "https://img3.doubanio.com/icon/u159595269-5.jpg",
     "message": "你爱听什么歌？",
-    "messages": [],
+    "messages": [{
+        content: '[可爱]'
+    }],
 }, {
     "name": "奥迪",
     "avatar": "https://img3.doubanio.com/icon/u137608767-10.jpg",

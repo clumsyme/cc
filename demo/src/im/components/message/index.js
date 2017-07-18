@@ -7,10 +7,14 @@ export class SendBubble extends Component {
         super(props)
     }
 
+    onSelect = (e) => {
+        console.warn(e.target)
+    }
+
     render() {
         const {avatar, content} = this.props
         return (
-            <div className="im-bubble-send">
+            <div className="im-bubble-send" onSelect={this.onSelect}>
                 <span className="im-bubble-send-content" dangerouslySetInnerHTML={{ __html: content }} />
                 <div className="im-bubble-send-deco" />
                 <Avatar className="im-avatar" src={avatar} size="large" />

@@ -31,11 +31,8 @@ export default class ChatAddPeople extends Component {
     }
 
     unSelect = (index) => {
-        console.log(index)
         let selected = this.state.selected
-        console.log(selected)
         selected.splice(index, 1)
-        console.log(selected)
         this.setState({
             selected: [...selected]
         })

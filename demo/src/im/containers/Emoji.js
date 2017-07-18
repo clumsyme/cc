@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
 import { Icon, Tabs } from 'antd'
-import emojis from './emojis'
-
-import emojiIcon from '../../../static/emoji/emoj_s_pressed.png'
-import emojiIcon2 from '../../../static/emoji/emoji_30.png'
+import { emojis } from '../utils'
 
 
 export default class Emoji extends Component {
@@ -15,7 +11,7 @@ export default class Emoji extends Component {
     render() {
         return (
             <div className="im-emoji-selector">
-                <Icon type="smile" onClick={this.props.toggleEmojiVisible} className="im-chat-window-baritem" />
+                <Icon type="smile-o" onClick={this.props.toggleEmojiVisible} className="im-chat-window-baritem" />
                 <div
                     ref={(emoji) => this.emoji = emoji}
                     className={this.props.visible ? "im-emoji-selector-pane scaleup" : "im-emoji-selector-pane"}
@@ -23,6 +19,8 @@ export default class Emoji extends Component {
                     {emojis.map((emoji) => {
                         return <img
                             src={emoji.file}
+                            alt={emoji.tag}
+                            title={emoji.tag}
                             key={emoji.tag}
                             className="im-emoji-item"
                             onClick={() => this.props.insertEmoji(emoji.tag)}

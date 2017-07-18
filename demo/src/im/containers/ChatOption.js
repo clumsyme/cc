@@ -36,7 +36,7 @@ export default class ChatOption extends Component {
                 {
                     //! 联系人不要 slice
                 }
-                {contacts.slice(0, 3).map((c) => (
+                {contacts.slice(0, 10).map((c) => (
                     <Contact name={c.name} avatar={c.avatar} key={c.name} />
                 ))}
                 <ChatAddPeople chatting={this.props.chatting} visible={this.state.addPeopleVisible} onCloseAddPeople={this.onCloseAddPeople} />

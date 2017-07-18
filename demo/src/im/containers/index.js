@@ -5,7 +5,7 @@ import ContactList from './ContactList'
 import ConversationList from './ConversationList'
 import ConversationWindow from './ConversationWindow'
 import ChatWindow from './ChatWindow'
-import { makeDragable } from './funcs'
+import { makeDragable } from '../utils'
 import './styles.css'
 
 const TabPane = Tabs.TabPane
@@ -22,7 +22,7 @@ export default class IM extends Component {
     }
     componentDidMount() {
         //! if drag 
-        makeDragable('#im-pane')
+        makeDragable('#im-pane', '.im-pane-head')
     }
 
     toggleVisible = () => {
@@ -62,7 +62,7 @@ export default class IM extends Component {
                     onCloseChatWindow={this.onCloseChatWindow}
                 />
                 <div id="im-pane" className={this.state.paneClass}>
-                    <div className="im-pane-head forDrag">
+                    <div className="im-pane-head">
                         <Search />
                     </div>
                     <Tabs

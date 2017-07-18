@@ -5,27 +5,45 @@ import { connect } from 'react-redux';
 import { SendBubble, ReceiveBubble } from '../components'
 import ChatOption from './ChatOption'
 import Emoji from './Emoji'
-import emojis from './emojis'
-import { makeDragable, scrollBottom, parseContent } from './funcs'
+import { makeDragable, scrollBottom, parseContent, emojis } from '../utils'
 import { sendMessage } from '../modules'
+
+import { nim } from './nim'
+
+// console.log(nim)
 
 //! 测试数据
 import { contacts } from '../TEST_DATA'
 const me = 'https://img1.doubanio.com/icon/u8782032-68.jpg'
 
 class ChatWindow extends Component {
+    state = {
+        optionVisible: false,
+        inputValue: '',
+        emojiVisible: false,
+    }
     constructor(props) {
         super(props)
-        this.state = {
-            optionVisible: false,
-            inputValue: '',
-            emojiVisible: false,
-        }
     }
 
     componentDidMount() {
-        makeDragable('.im-chat-window-wrapper')
+        makeDragable('.im-chat-window-wrapper', '.im-chat-window-header')
         scrollBottom(this.chatWindow, 0)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.warn(nextProps)
+        if (nextProps.chatting !== this.props.chatting) {
+            this.init()
+        }
+    }
+
+    init() {
+        this.setState({
+            optionVisible: false,
+            inputValue: '',
+            emojiVisible: false,
+        })
     }
 
     changeFont = () => {
@@ -91,6 +109,9 @@ class ChatWindow extends Component {
     }
 
     sendMessage = () => {
+        if (!this.state.inputValue.trim()) {
+            return
+        }
         this.props.sendMessage(this.state.inputValue, this.props.chatting.name)
         this.setState({
             emojiVisible: false,
@@ -100,19 +121,26 @@ class ChatWindow extends Component {
         })
     }
 
+    onKeyDown = (e) => {
+        if (e.keyCode === 13) {
+            e.preventDefault()
+            this.sendMessage()
+        }
+    }
+
     render() {
         const { chatting } = this.props
 
         return (
             <div className={"im-chat-window-wrapper" + " " + this.props.className}>
-                <div className="im-chat-window-header forDrag">
+                <div className="im-chat-window-header">
                     <h2>{chatting ? chatting.name : ''}</h2>
                     <div className="im-chat-window-ctrl">
                         <span className="im-chat-window-option" onClick={this.toggleOptionVisible}><Icon type="ellipsis" /></span>
                         <span className="im-chat-window-closer" onClick={this.unChatting}><Icon type="close" /></span>
                     </div>
                 </div>
-                <div className="im-chat-window" onClick={this.onCloseEmoji} ref={(window) => {this.chatWindow = window}}>
+                <div className="im-chat-window" onClick={this.onCloseEmoji} ref={(window) => { this.chatWindow = window }}>
                     {chatting && chatting.messages.map((message, index) => {
                         if (message.sending) {
                             return <SendBubble avatar={me} content={parseContent(message.content)} key={index} />
@@ -134,6 +162,7 @@ class ChatWindow extends Component {
                 <textarea
                     className="im-chat-window-input"
                     type="textarea"
+                    onKeyDown={this.onKeyDown}
                     rows={6}
                     onChange={this.onInput}
                     onClick={this.onCloseEmoji}
