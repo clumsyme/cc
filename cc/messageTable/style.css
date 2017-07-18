@@ -69,7 +69,7 @@
 }
 
 .cc_bubble_receive_deco {
-    border-right-color: #ececec;
+    border-right-color: #fff;;
 }
 
 .cc_bubble_send_content,
@@ -77,10 +77,14 @@
     border-radius: 10px;
     background-color: #b2e281;
     padding: 10px 16px;
-    display: inline-block;
     word-break: break-all;
+    font-family: sans-serif;
 }
 
 .cc_bubble_receive_content {
-    background-color: #ececec
+    background-color: #fff;
+}
+
+.emoji {
+    vertical-align: middle;
 }

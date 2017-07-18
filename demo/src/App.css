@@ -33,11 +33,26 @@
   display: flex;
   background-color: #eee;
   align-items: stretch;
+  height: 500px;
 }
 
 .clist {
+  overflow-y: scroll;
   background-color: #3a3d44;
   flex: 1;
+}
+
+.clist::-webkit-scrollbar {
+    width: 5px;
+    height: 10px;
+}
+.clist::-webkit-scrollbar-track {
+    background-color: #2e3238;
+    width: 20px;
+}
+.clist::-webkit-scrollbar-thumb {
+    height: 20px;
+    background-color: #000
 }
 
 .mlist {

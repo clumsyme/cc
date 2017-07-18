@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "emoji-images": "^0.1.1",
+    "emoji-mart": "^1.0.1",
+    "emojione-picker": "^2.2.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },

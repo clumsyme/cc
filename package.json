@@ -1,7 +1,7 @@
 {
-  "name": "cc",
-  "version": "1.0.0",
-  "description": "chat components",
+  "name": "chat-comps",
+  "version": "0.3",
+  "description": "components for build chatting UIs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/clumsyme/cc#readme",
   "dependencies": {
+    "emoji-mart": "^1.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   }
